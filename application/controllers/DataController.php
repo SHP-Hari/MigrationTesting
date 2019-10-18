@@ -32,12 +32,36 @@ class DataController extends CI_Controller {
 				array_push($response['questions'], $ques);
 			}
 			$response["success"] = 1;
-			echo json_encode($response);
+//			echo json_encode($response);
 		}else{
 			$response["success"] = 0;
 			$response["message"] = "No products found";
-			echo json_encode($response);
+//			echo json_encode($response);
 		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($response));
+	}
+
+	function getItems(){
+		$response = array();
+		$response["questions"] = array();
+		for ($i = 0; $i<10; $i++){
+			$ques = array();
+			$ques["id"] = 1;
+			$ques["question"] = "question->question";
+			$ques["answer1"] = "question->answer1";
+			$ques["answer2"] = "question->answer2";
+			$ques["answer3"] = "question->answer3";
+			$ques["answer4"] = "question->answer4";
+			$ques["correctAnswer"] = "question->correctAnswer";
+			array_push($response['questions'], $ques);
+		}
+		$response["success"] = 1;
+//		echo json_encode($response);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($response));
 	}
 
 }
